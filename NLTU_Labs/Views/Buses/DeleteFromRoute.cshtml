@@ -1,0 +1,45 @@
+﻿
+@model  NLTU_Labs.Models.Bus
+
+@{
+    ViewBag.Title = "Delete bus";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to move the following bus to the park?
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-xs-4 col-sm-9">
+                    <label class="control-label">@Html.NameFor(m => m.BusNumber) : @Html.ValueFor(m => m.BusNumber)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-9">
+                    <label class="control-label">@Html.NameFor(m => m.DriverName) : @Html.ValueFor(m => m.DriverName)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-9">
+                    <label class="control-label">@Html.NameFor(m => m.RouteNumber) : @Html.ValueFor(m => m.RouteNumber)</label>
+                </div>
+            </div>
+            <div class="pad-top">
+                <button type="submit" class="btn btn-danger btn-lg margin-right">
+                    <span class="glyphicon glyphicon-trash"></span> Delete
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-warning btn-lg">
+                    <span class="glyphicon glyphicon-remove"></span> Home
+                </a>
+            </div>
+
+        </div>
+    </div>
+}
+

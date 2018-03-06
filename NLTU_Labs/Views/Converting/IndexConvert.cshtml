@@ -1,0 +1,47 @@
+﻿@model  NLTU_Labs.Models.ConvertValue
+@using NLTU_Labs.Models
+
+@using (Html.BeginForm())
+{
+    <div> </div>
+    if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @TempData["Message"]
+        </div>
+    }
+@Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" })
+<h2 style="font: normal courier italic; color:mistyrose;">Converting values</h2>
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Value, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Value, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.OptionValue, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.OptionValue,
+                    (SelectList)ViewBag.SelectListItems, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group"> 
+            <label style="display:inline; font: normal 25px courier italic !important; color:limegreen;">Result of converting: @Model.Value => @Model.Result.ToString()</label>
+        </div>
+    
+            <div class="pad-top">
+                <button type="submit" class="btn btn-success btn-lg margin-right">
+                    <span class="glyphicon glyphicon-compressed"></span> Convert
+                </button> 
+                <a href="@Url.Action("Index", "Buses")" class="btn btn-primary btn-lg"> 
+                    <span class="glyphicon glyphicon-inbox"></span> Home
+                </a>
+            </div>
+        
+    </div> 
+</div> 
+}

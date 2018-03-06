@@ -1,0 +1,46 @@
+﻿@model List<NLTU_Labs.Models.Bus>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["Message"]
+    </div>
+}
+
+<h3 class="caption"> Buses in the route</h3>
+
+<table class="table">
+    <tr>
+        <th>Bus number</th>
+        <th>Driver name</th>
+        <th>Route number</th>
+        <th>&nbsp;</th>
+    </tr>
+    @foreach (var bus in Model)
+    {
+        <tr>
+            <td>@bus.BusNumber</td>
+            <td>@bus.DriverName</td>
+            <td>@bus.RouteNumber</td>
+            <td>
+                <div class="pull-right">
+                    <a href="@Url.Action("EditFromRoute", new { id = bus.Id })" class="btn btn-warning btn-sm margin-right">
+                        <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                    </a> 
+                    <a href="@Url.Action("DeleteFromRoute", new { id = bus.Id })" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Leave route</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+<div class="navbar-collapse collapse">
+    <a href="@Url.Action("Index", "Buses")"
+       class="btn btn-success navbar-btn navbar-right">
+        <span class="glyphicon glyphicon-arrow-right"></span> Go to buses in the parking
+    </a>
+</div>
